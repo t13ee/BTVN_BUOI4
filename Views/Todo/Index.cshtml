@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BTVN4.Models.TodoItem>
+
+@{
+    ViewData["Title"] = "Danh sách công việc";
+}
+
+<style>
+    .purple-header {
+        background-color: #c499cc;
+        color: red;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="purple-header">
+    BÀI TẬP VẬN DỤNG 2
+</div>
+<p>Xây dựng ứng dụng TodoList với các chức năng: Xem danh sách, chi tiết, thêm, sửa, xoá</p>
+
+<h2 class="mt-4">DANH SÁCH CÔNG VIỆC</h2>
+<a asp-action="Create" class="btn btn-link p-0 mb-3 text-decoration-none">Tạo mới công việc</a>
+
+<table class="table table-bordered">
+    <thead class="table-light">
+        <tr>
+            <th>Mã công việc</th>
+            <th>Tên công việc</th>
+            <th>Trạng thái hoàn thành</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td class="text-center">
+                    <input type="checkbox" @(item.IsCompleted ? "checked" : "") disabled />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+                       onclick="return confirm('Bạn có chắc muốn xoá?')">Xoá</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

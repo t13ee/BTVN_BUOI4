@@ -1,0 +1,29 @@
+﻿@model BTVN4.Models.TodoItem
+
+<style>
+    .purple-header { background-color: #c499cc; color: red; padding: 10px; text-align: center; font-weight: bold; border: 1px solid #000; margin-bottom: 10px; }
+    .info-box { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
+</style>
+
+<div class="purple-header">BÀI TẬP VẬN DỤNG 2</div>
+
+<div class="info-box">
+    <h3>Chi tiết công việc</h3>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">Mã công việc:</dt>
+        <dd class="col-sm-8">@Model.Id</dd>
+
+        <dt class="col-sm-4">Tên công việc:</dt>
+        <dd class="col-sm-8">@Model.Name</dd>
+
+        <dt class="col-sm-4">Trạng thái:</dt>
+        <dd class="col-sm-8">
+            @(Model.IsCompleted ? "Đã hoàn thành" : "Chưa hoàn thành")
+        </dd>
+    </dl>
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a> |
+        <a asp-area="" asp-action="Index">Quay trở lại danh sách</a>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@model BTVN4.Models.TodoItem
+
+@{
+    ViewData["Title"] = "Sửa công việc";
+}
+
+<style>
+    .purple-header {
+        background-color: #c499cc;
+        color: red;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+        border: 1px solid #000;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .line-title {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="purple-header">
+    BÀI TẬP VẬN DỤNG 2
+</div>
+<p>Xây dựng ứng dụng TodoList với các chức năng: Xem danh sách, chi tiết, thêm, sửa, xoá</p>
+
+<div class="form-container">
+    <h2 class="line-title">Sửa công việc</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Mã công việc</label>
+            <input asp-for="Id" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tên công việc</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input asp-for="IsCompleted" class="form-check-input" id="statusCheck" />
+            <label class="form-check-label" for="statusCheck">Trạng thái hoàn thành</label>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Sửa</button>
+        </div>
+
+        <div>
+            <a asp-action="Index" class="text-decoration-none">Quay trở lại</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
